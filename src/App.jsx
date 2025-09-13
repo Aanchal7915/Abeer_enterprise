@@ -432,35 +432,58 @@ function App() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-white relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50"></div>
+
+
+       {/* Products Section */}
+       <section id="products" className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-20 right-20 w-40 h-40 bg-blue-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-20 w-60 h-60 bg-indigo-200/20 rounded-full blur-3xl"></div>
+        </div>
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-6 p-3">
-              Why Choose Abeer Enterprises?
+              Our Product Range
             </h3>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We deliver excellence in every product and service, ensuring your business needs are met with the highest standards.
+              Discover our comprehensive range of high-quality tapes designed to meet all your packaging and industrial needs.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 hover:border-gray-200 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative">
-                    <div className="flex justify-center mb-6">
-                      <div className={`bg-gradient-to-r ${feature.color} p-4 rounded-2xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                        {feature.icon}
-                      </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {products.map((product, index) => (
+              <div key={product.id} className="group animate-fade-in-up" style={{animationDelay: `${index * 0.1}s`}}>
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100 hover:border-gray-200 relative">
+                  <div className="aspect-square overflow-hidden relative">
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className={`w-full h-full object-center group-hover:scale-110 transition-transform duration-500 ${product.image === '/3-removebg-preview.png' ? 'object-contain p-6' : ''}`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Premium
                     </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-4 text-center group-hover:text-blue-600 transition-colors">
-                      {feature.title}
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                      {product.title}
                     </h4>
-                    <p className="text-gray-600 text-center leading-relaxed group-hover:text-gray-700 transition-colors">
-                      {feature.description}
+                    <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors">
+                      {product.description}
                     </p>
+                    <button
+                      onClick={handleWhatsAppClick}
+                      className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25 group/btn"
+                    >
+                      <span className="flex items-center justify-center space-x-2">
+                        <MessageCircle className="w-5 h-5 group-hover/btn:animate-bounce" />
+                        <span>Inquire on WhatsApp</span>
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -469,6 +492,8 @@ function App() {
         </div>
       </section>
 
+
+      
       {/* Pricing Section */}
       <section id="pricing" className="py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
         {/* Background Elements */}
@@ -604,6 +629,9 @@ function App() {
         </div>
       </section>
 
+
+
+      
       {/* Custom Tape Highlight */}
       <section className="py-24 relative overflow-hidden">
         {/* Background Image */}
@@ -661,56 +689,37 @@ function App() {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section id="products" className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-20 right-20 w-40 h-40 bg-blue-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-20 w-60 h-60 bg-indigo-200/20 rounded-full blur-3xl"></div>
-        </div>
-        
+
+
+      {/* Features Section */}
+      <section className="py-20 bg-white relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-6 p-3">
-              Our Product Range
+              Why Choose Abeer Enterprises?
             </h3>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover our comprehensive range of high-quality tapes designed to meet all your packaging and industrial needs.
+              We deliver excellence in every product and service, ensuring your business needs are met with the highest standards.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product, index) => (
-              <div key={product.id} className="group animate-fade-in-up" style={{animationDelay: `${index * 0.1}s`}}>
-                <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100 hover:border-gray-200 relative">
-                  <div className="aspect-square overflow-hidden relative">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className={`w-full h-full object-center group-hover:scale-110 transition-transform duration-500 ${product.image === '/3-removebg-preview.png' ? 'object-contain p-6' : ''}`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Premium
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <div key={index} className="group">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 hover:border-gray-200 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative">
+                    <div className="flex justify-center mb-6">
+                      <div className={`bg-gradient-to-r ${feature.color} p-4 rounded-2xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        {feature.icon}
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                      {product.title}
+                    <h4 className="text-xl font-bold text-gray-900 mb-4 text-center group-hover:text-blue-600 transition-colors">
+                      {feature.title}
                     </h4>
-                    <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors">
-                      {product.description}
+                    <p className="text-gray-600 text-center leading-relaxed group-hover:text-gray-700 transition-colors">
+                      {feature.description}
                     </p>
-                    <button
-                      onClick={handleWhatsAppClick}
-                      className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25 group/btn"
-                    >
-                      <span className="flex items-center justify-center space-x-2">
-                        <MessageCircle className="w-5 h-5 group-hover/btn:animate-bounce" />
-                        <span>Inquire on WhatsApp</span>
-                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </span>
-                    </button>
                   </div>
                 </div>
               </div>
@@ -719,6 +728,8 @@ function App() {
         </div>
       </section>
 
+
+     
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-gradient-to-br from-white via-gray-50 to-blue-50 relative overflow-hidden">
         {/* Background Elements */}
