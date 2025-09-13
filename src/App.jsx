@@ -6,6 +6,7 @@ function App() {
   const [selectedMicron, setSelectedMicron] = useState('36');
   const [isLoading, setIsLoading] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
 
   useEffect(() => {
     // Simulate loading
@@ -15,7 +16,9 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  const showToast = () => {
+
+  const showToast = (message = 'Opening phone dialer...') => {
+    setNotificationMessage(message);
     setShowNotification(true);
     setTimeout(() => setShowNotification(false), 3000);
   };
@@ -199,18 +202,18 @@ function App() {
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/919306617201', '_blank');
-    showToast();
+    showToast('Redirecting to WhatsApp...');
   };
 
   const handleCallClick = (number) => {
     window.open(`tel:${number}`, '_self');
-    showToast();
+    showToast('Opening phone dialer...');
   };
 
   const handlePriceInquiry = (micron, size) => {
     const message = `Hi! I'm interested in ${micron} MICRON tape, size ${size}. Could you please provide pricing details and more information?`;
     window.open(`https://wa.me/919306617201?text=${encodeURIComponent(message)}`, '_blank');
-    showToast();
+    showToast('Redirecting to WhatsApp...');
   };
 
   if (isLoading) {
@@ -242,7 +245,7 @@ function App() {
         <div className="fixed top-4 right-4 z-50 animate-slide-in-right">
           <div className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-xl flex items-center space-x-2">
             <CheckCircle className="w-5 h-5" />
-            <span>Redirecting to WhatsApp...</span>
+            <span>{notificationMessage}</span>
           </div>
         </div>
       )}
@@ -350,7 +353,7 @@ function App() {
             </button>
             
             <button
-              onClick={() => handleCallClick('7988729573')}
+              onClick={() => handleCallClick('9306617201')}
               className="bg-white/10 backdrop-blur-md border-2 border-white/30 hover:bg-white/20 text-white px-10 py-5 rounded-2xl flex items-center space-x-3 transition-all duration-300 transform hover:scale-105 shadow-2xl group text-lg font-semibold animate-glow relative overflow-hidden"
             >
               <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
