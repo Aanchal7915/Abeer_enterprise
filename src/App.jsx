@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Phone, MapPin, MessageCircle, Star, Award, Truck, Shield, Package, Calculator, Info, ArrowRight, CheckCircle, Zap, Globe, Users, TrendingUp } from 'lucide-react';
 import Logo from './components/Logo';
 
@@ -216,6 +216,40 @@ function App() {
     showToast('Redirecting to WhatsApp...');
   };
 
+  // Stat animation logic (viewport based)
+  const [animatedStat, setAnimatedStat] = useState(0);
+  const statRef = useRef(null);
+  const [statStarted, setStatStarted] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (!statRef.current || statStarted) return;
+      const rect = statRef.current.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setStatStarted(true);
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [statStarted]);
+
+  useEffect(() => {
+    let interval;
+    if (statStarted && animatedStat < 500) {
+      interval = setInterval(() => {
+        setAnimatedStat(prev => {
+          if (prev + 10 >= 500) {
+            clearInterval(interval);
+            return 500;
+          }
+          return prev + 10;
+        });
+      }, 10);
+    }
+    return () => clearInterval(interval);
+  }, [statStarted, animatedStat]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 flex items-center justify-center">
@@ -371,7 +405,12 @@ function App() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center group animate-fade-in-up" style={{animationDelay: `${index * 0.2}s`}}>
+              <div
+                key={index}
+                className="text-center group animate-fade-in-up"
+                style={{animationDelay: `${index * 0.2}s`}}
+                ref={index === 0 ? statRef : null}
+              >
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 hover:bg-white/20 transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 relative overflow-hidden">
                   <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative z-10">
@@ -380,7 +419,10 @@ function App() {
                         {stat.icon}
                       </div>
                     </div>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:animate-text-shimmer">{stat.number}</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:animate-text-shimmer">
+                      {index === 0 ? animatedStat : stat.number}
+                      {index === 0 ? '+' : ''}
+                    </h3>
                     <p className="text-blue-200 font-medium group-hover:text-white transition-colors duration-300">{stat.label}</p>
                   </div>
                 </div>
@@ -645,7 +687,7 @@ function App() {
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className={`w-full h-full object-center group-hover:scale-110 transition-transform duration-500 ${product.image === '/3-removebg-preview.png' ? 'object-contain p-6' : ''}`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
