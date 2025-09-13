@@ -566,14 +566,18 @@ function App() {
       <section className="py-24 relative overflow-hidden">
         {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat md:bg-fixed"
           style={{
-            backgroundImage: `url('/bg-images.jpg')`
+            backgroundImage: `url('/bg-images.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat'
           }}
         ></div>
-        {/* Overlay for content visibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/85 via-indigo-900/85 to-purple-900/85"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
+        {/* Enhanced Overlay for better content visibility */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-indigo-900/85 to-purple-900/90"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
         
         {/* Background Elements */}
         <div className="absolute inset-0">
@@ -584,18 +588,29 @@ function App() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-in-up">
-            <h3 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight drop-shadow-2xl">
+            <h3 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight" style={{
+              textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
+              filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.6))'
+            }}>
               Customized Tapes According to Your Company Name
             </h3>
-            <p className="text-xl md:text-2xl text-white mb-12 max-w-4xl mx-auto leading-relaxed font-light drop-shadow-lg">
+            <p className="text-xl md:text-2xl text-white mb-12 max-w-4xl mx-auto leading-relaxed font-light" style={{
+              textShadow: '1px 1px 3px rgba(0,0,0,0.7), 0 0 15px rgba(0,0,0,0.4)',
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))'
+            }}>
               Stand out with personalized packaging tapes featuring your company branding. 
               Perfect for professional packaging and brand recognition.
             </p>
             <button
               onClick={handleWhatsAppClick}
-              className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-6 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-white/25 group"
+              className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-6 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-white/25 group relative overflow-hidden"
+              style={{
+                boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.2)',
+                border: '2px solid rgba(255,255,255,0.3)'
+              }}
             >
-              <span className="flex items-center space-x-3">
+              <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="flex items-center space-x-3 relative z-10">
                 <span>Order Custom Tapes Now</span>
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </span>
