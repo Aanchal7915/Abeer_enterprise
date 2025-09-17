@@ -60,13 +60,13 @@ function App() {
     },
     {
       id: 5,
-      image: '/1-removebg-preview.png',
+      image: '/2-removebg-preview.png',
       title: 'Tissue Tape',
       description: 'Lightweight and flexible tissue tapes perfect for delicate packaging and temporary applications.'
     },
     {
       id: 6,
-      image: '/2-removebg-preview.png',
+      image: '/masking1-removebg-preview.png',
       title: 'Masking Tape',
       description: 'Professional masking tapes for painting, crafting, and precision applications with clean removal.'
     },
@@ -90,7 +90,7 @@ function App() {
     },
     {
       id: 10,
-      image: '/7.png',
+      image: '/1-removebg-preview.png',
       title: 'Colour Tape',
       description: 'Vibrant colored tapes available in multiple colors for coding, organization, and decorative purposes.'
     },
